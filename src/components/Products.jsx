@@ -12,12 +12,14 @@ const Products = () => {
     setLoading(true)
     const response = await fetch('https://fakestoreapi.com/products')
 
-    componentMounted
-      ? setData(await response.clone()) &&
-        setFilter(await response.json()) &&
-        setLoading(false) &&
-        console.log(filter)
-      : (componentMounted = false)
+    if (componentMounted) {
+      setData(await response.clone())
+      setFilter(await response.json())
+      setLoading(false)
+      console.log(filter)
+    }
+
+    return (componentMounted = false)
   }
   useEffect(() => {
     getProducts()
@@ -31,7 +33,7 @@ const Products = () => {
           <hr />
         </div>
         <div className="row justify-content-center">
-          {loading ? 'Loading...' : <ShowPorducts />}
+          {loading ? 'Loading...' : <ShowPorducts filter={filter} />}
         </div>
       </div>
     </div>
