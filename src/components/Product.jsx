@@ -31,13 +31,25 @@ const Product = () => {
             width="400px"
           />
         </div>
+        <div className="col-md-6">
+          <h4 className="text-uppercase text-black-50">{product.category}</h4>
+          <h1 className="display-5">{product.title}</h1>
+          <p className="lead">
+            Rating {product.rating && product.rating.rate}{' '}
+            <i className="fa fa-star"></i>
+          </p>
+          <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
+          <p className="lead">{product.description.toLowerCase()}</p>
+          <button className="btn btn-outline-dark">Add to Cart</button>
+          <button className="btn btn-dark">Go to Cart</button>
+        </div>
       </>
     )
   }
 
   return (
-    <div>
-      <div className="container">{loading ? <Loading /> : <ShowProduct />}</div>
+    <div className="container">
+      <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
     </div>
   )
 }
